@@ -1,0 +1,22 @@
+
+заполнение табеля
+http://online-buhuchet.ru/zapolnyaem-tabel-ucheta-rabochego-vremeni-forma-t-13/ 
+
+еще о заполнении
+http://working-papers.ru/tabel-ucheta-rabochego-vremeni.html
+
+http://www.grandars.ru/college/pravovedenie/uchet-rabochego-vremeni.html
+
+
+-----------
+Используйте имеющиеся навыки для создания приложений на различных платформах
+http://www.visualstudio.com/ru-ru/explore/application-development-vs
+
+visual studio express (коммерческое использование)
+http://www.visualstudio.com/ru-ru/products/visual-studio-express-vs.aspx
+
+mvc
+http://msdn.microsoft.com/ru-ru/asp.net/gg430455.aspx
+
+SQL server системные требования
+http://msdn.microsoft.com/ru-ru/library/ms143506.aspx

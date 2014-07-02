@@ -1,0 +1,1086 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Contributors.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Holidays">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="IsShiftOfYear" Type="bit" Nullable="false" />
+          <Property Name="IsHoliday" Type="bit" Nullable="false" />
+          <Property Name="IsNormsCheck" Type="bit" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PostTypesDayTimeCoefficientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostTypesDayTimeCoefficient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="260" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostTypesDayTimeCoefficientValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostTypesDayTimeCoefficientId" Type="int" Nullable="false" />
+          <Property Name="GendersId" Type="int" Nullable="false" />
+          <Property Name="Coefficient" Type="float" Nullable="false" />
+          <Property Name="TimeNormOfDay" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PostTypesInVacationTypes">
+          <Key>
+            <PropertyRef Name="PostTypesId" />
+            <PropertyRef Name="VacationTypesId" />
+          </Key>
+          <Property Name="PostTypesId" Type="int" Nullable="false" />
+          <Property Name="VacationTypesId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegNormGraphType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="DayCount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegNorms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Norm" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staffs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PatronymicName" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TabelNumber" Type="smallint" Nullable="false" />
+          <Property Name="PostId" Type="int" Nullable="false" />
+          <Property Name="PostTypeId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="RegNormGraphTypeId" Type="int" Nullable="false" />
+          <Property Name="RegNormId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SysParameters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TimeNormOfMonths">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Norm" Type="float" Nullable="false" />
+          <Property Name="RegNormsId" Type="int" Nullable="false" />
+          <Property Name="Year" Type="int" Nullable="false" />
+          <Property Name="Month" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDateWithHolidays" Type="datetime" Nullable="false" />
+          <Property Name="VacationTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VacationTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Post_Staff">
+          <End Role="Posts" Type="Self.Posts" Multiplicity="1" />
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Posts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staffs">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_TypeStaff">
+          <End Role="PostTypes" Type="Self.PostTypes" Multiplicity="1" />
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staffs">
+              <PropertyRef Name="PostTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostTypes_PostTypesDayTimeCoefficient">
+          <End Role="PostTypesDayTimeCoefficient" Type="Self.PostTypesDayTimeCoefficient" Multiplicity="1" />
+          <End Role="PostTypes" Type="Self.PostTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypesDayTimeCoefficient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypes">
+              <PropertyRef Name="PostTypesDayTimeCoefficientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostTypesDayTimeCoefficientValues_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="PostTypesDayTimeCoefficientValues" Type="Self.PostTypesDayTimeCoefficientValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesDayTimeCoefficientValues">
+              <PropertyRef Name="GendersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient">
+          <End Role="PostTypesDayTimeCoefficient" Type="Self.PostTypesDayTimeCoefficient" Multiplicity="1" />
+          <End Role="PostTypesDayTimeCoefficientValues" Type="Self.PostTypesDayTimeCoefficientValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypesDayTimeCoefficient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesDayTimeCoefficientValues">
+              <PropertyRef Name="PostTypesDayTimeCoefficientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostTypesInVacationTypes_PostTypes">
+          <End Role="PostTypes" Type="Self.PostTypes" Multiplicity="1" />
+          <End Role="PostTypesInVacationTypes" Type="Self.PostTypesInVacationTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesInVacationTypes">
+              <PropertyRef Name="PostTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PostTypesInVacationTypes_VacationTypes">
+          <End Role="VacationTypes" Type="Self.VacationTypes" Multiplicity="1" />
+          <End Role="PostTypesInVacationTypes" Type="Self.PostTypesInVacationTypes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VacationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesInVacationTypes">
+              <PropertyRef Name="VacationTypesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Vacation">
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="1" />
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staffs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staffs_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="1" />
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staffs">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staffs_RegNormGraphType">
+          <End Role="RegNormGraphType" Type="Self.RegNormGraphType" Multiplicity="1" />
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNormGraphType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staffs">
+              <PropertyRef Name="RegNormGraphTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staffs_RegNorms">
+          <End Role="RegNorms" Type="Self.RegNorms" Multiplicity="1" />
+          <End Role="Staffs" Type="Self.Staffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNorms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staffs">
+              <PropertyRef Name="RegNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeNormOfMonths_RegNorms">
+          <End Role="RegNorms" Type="Self.RegNorms" Multiplicity="1" />
+          <End Role="TimeNormOfMonths" Type="Self.TimeNormOfMonths" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNorms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeNormOfMonths">
+              <PropertyRef Name="RegNormsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacations_VacationTypes">
+          <End Role="VacationTypes" Type="Self.VacationTypes" Multiplicity="1" />
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VacationTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacations">
+              <PropertyRef Name="VacationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddVacation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="dateTo" Type="datetime" Mode="In" />
+          <Parameter Name="staffId" Type="int" Mode="In" />
+          <Parameter Name="vacationTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetHolidaysInDate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="dateTo" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="GetStaffsSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GetT13ReportData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PeriodFrom" Type="date" Mode="In" />
+          <Parameter Name="PeriodTo" Type="date" Mode="In" />
+        </Function>
+        <Function Name="GetVacationsOnRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="dateTo" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SetVacation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VacationId" Type="int" Mode="In" />
+          <Parameter Name="dateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="dateTo" Type="datetime" Mode="In" />
+          <Parameter Name="staffId" Type="int" Mode="In" />
+          <Parameter Name="vacationTypeId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ShiftHolidayOnNextYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currentYear" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ShiftTimeNormOfMonthsOnNextYear" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="currentYear" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="ContributorsStoreContainer">
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Holidays" EntityType="Self.Holidays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Posts" EntityType="Self.Posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTypes" EntityType="Self.PostTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTypesDayTimeCoefficient" EntityType="Self.PostTypesDayTimeCoefficient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTypesDayTimeCoefficientValues" EntityType="Self.PostTypesDayTimeCoefficientValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PostTypesInVacationTypes" EntityType="Self.PostTypesInVacationTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegNormGraphType" EntityType="Self.RegNormGraphType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegNorms" EntityType="Self.RegNorms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staffs" EntityType="Self.Staffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SysParameters" EntityType="Self.SysParameters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TimeNormOfMonths" EntityType="Self.TimeNormOfMonths" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VacationTypes" EntityType="Self.VacationTypes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Post_Staff" Association="Self.FK_Post_Staff">
+            <End Role="Posts" EntitySet="Posts" />
+            <End Role="Staffs" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_TypeStaff" Association="Self.FK_Post_TypeStaff">
+            <End Role="PostTypes" EntitySet="PostTypes" />
+            <End Role="Staffs" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostTypes_PostTypesDayTimeCoefficient" Association="Self.FK_PostTypes_PostTypesDayTimeCoefficient">
+            <End Role="PostTypesDayTimeCoefficient" EntitySet="PostTypesDayTimeCoefficient" />
+            <End Role="PostTypes" EntitySet="PostTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostTypesDayTimeCoefficientValues_Genders" Association="Self.FK_PostTypesDayTimeCoefficientValues_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="PostTypesDayTimeCoefficientValues" EntitySet="PostTypesDayTimeCoefficientValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient" Association="Self.FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient">
+            <End Role="PostTypesDayTimeCoefficient" EntitySet="PostTypesDayTimeCoefficient" />
+            <End Role="PostTypesDayTimeCoefficientValues" EntitySet="PostTypesDayTimeCoefficientValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostTypesInVacationTypes_PostTypes" Association="Self.FK_PostTypesInVacationTypes_PostTypes">
+            <End Role="PostTypes" EntitySet="PostTypes" />
+            <End Role="PostTypesInVacationTypes" EntitySet="PostTypesInVacationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PostTypesInVacationTypes_VacationTypes" Association="Self.FK_PostTypesInVacationTypes_VacationTypes">
+            <End Role="VacationTypes" EntitySet="VacationTypes" />
+            <End Role="PostTypesInVacationTypes" EntitySet="PostTypesInVacationTypes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Vacation" Association="Self.FK_Staff_Vacation">
+            <End Role="Staffs" EntitySet="Staffs" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staffs_Genders" Association="Self.FK_Staffs_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Staffs" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staffs_RegNormGraphType" Association="Self.FK_Staffs_RegNormGraphType">
+            <End Role="RegNormGraphType" EntitySet="RegNormGraphType" />
+            <End Role="Staffs" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staffs_RegNorms" Association="Self.FK_Staffs_RegNorms">
+            <End Role="RegNorms" EntitySet="RegNorms" />
+            <End Role="Staffs" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TimeNormOfMonths_RegNorms" Association="Self.FK_TimeNormOfMonths_RegNorms">
+            <End Role="RegNorms" EntitySet="RegNorms" />
+            <End Role="TimeNormOfMonths" EntitySet="TimeNormOfMonths" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacations_VacationTypes" Association="Self.FK_Vacations_VacationTypes">
+            <End Role="VacationTypes" EntitySet="VacationTypes" />
+            <End Role="Vacations" EntitySet="Vacations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Contributors" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ContributorsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Posts" EntityType="Contributors.Post" />
+          <EntitySet Name="PostTypes" EntityType="Contributors.PostType" />
+          <EntitySet Name="RegNorms" EntityType="Contributors.RegNorm" />
+          <EntitySet Name="Staffs" EntityType="Contributors.Staff" />
+          <EntitySet Name="TimeNormOfMonths" EntityType="Contributors.TimeNormOfMonth" />
+          <EntitySet Name="Vacations" EntityType="Contributors.Vacation" />
+          <EntitySet Name="VacationTypes" EntityType="Contributors.VacationType" />
+          <AssociationSet Name="FK_Post_Staff" Association="Contributors.FK_Post_Staff">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Post_TypeStaff" Association="Contributors.FK_Post_TypeStaff">
+            <End Role="PostType" EntitySet="PostTypes" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staffs_RegNorms" Association="Contributors.FK_Staffs_RegNorms">
+            <End Role="RegNorm" EntitySet="RegNorms" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Vacation" Association="Contributors.FK_Staff_Vacation">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Vacation" EntitySet="Vacations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacations_VacationTypes" Association="Contributors.FK_Vacations_VacationTypes">
+            <End Role="VacationType" EntitySet="VacationTypes" />
+            <End Role="Vacation" EntitySet="Vacations" />
+          </AssociationSet>
+          <EntitySet Name="Holidays" EntityType="Contributors.Holiday" />
+          <EntitySet Name="Genders" EntityType="Contributors.Gender" />
+          <AssociationSet Name="FK_Staffs_Genders" Association="Contributors.FK_Staffs_Genders">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="RegNormGraphTypes" EntityType="Contributors.RegNormGraphType" />
+          <AssociationSet Name="FK_Staffs_RegNormGraphType" Association="Contributors.FK_Staffs_RegNormGraphType">
+            <End Role="RegNormGraphType" EntitySet="RegNormGraphTypes" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <FunctionImport Name="ShiftHolidayOnNextYear">
+          <Parameter Name="currentYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <AssociationSet Name="FK_TimeNormOfMonths_RegNorms" Association="Contributors.FK_TimeNormOfMonths_RegNorms">
+            <End Role="RegNorm" EntitySet="RegNorms" />
+            <End Role="TimeNormOfMonth" EntitySet="TimeNormOfMonths" />
+          </AssociationSet>
+          <FunctionImport Name="ShiftTimeNormOfMonthsOnNextYear">
+          <Parameter Name="currentYear" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="SysParameters" EntityType="Contributors.SysParameter" />
+          <FunctionImport Name="GetStaffsSummary" ReturnType="Collection(Contributors.GetStaffsSummary_Result)" />
+          <FunctionImport Name="GetT13ReportData" ReturnType="Collection(Contributors.GetT13ReportData_Result)" >
+            <Parameter Name="PeriodFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="PeriodTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <AssociationSet Name="PostTypesInVacationTypes" Association="Contributors.PostTypesInVacationTypes">
+            <End Role="PostType" EntitySet="PostTypes" />
+            <End Role="VacationType" EntitySet="VacationTypes" />
+          </AssociationSet>
+          <EntitySet Name="PostTypesDayTimeCoefficientValues" EntityType="Contributors.PostTypesDayTimeCoefficientValue" />
+          <AssociationSet Name="FK_PostTypesDayTimeCoefficientValues_Genders" Association="Contributors.FK_PostTypesDayTimeCoefficientValues_Genders">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="PostTypesDayTimeCoefficientValue" EntitySet="PostTypesDayTimeCoefficientValues" />
+          </AssociationSet>
+          <EntitySet Name="PostTypesDayTimeCoefficients" EntityType="Contributors.PostTypesDayTimeCoefficient" />
+          <AssociationSet Name="FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient" Association="Contributors.FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient">
+            <End Role="PostTypesDayTimeCoefficient" EntitySet="PostTypesDayTimeCoefficients" />
+            <End Role="PostTypesDayTimeCoefficientValue" EntitySet="PostTypesDayTimeCoefficientValues" />
+          </AssociationSet>
+          <FunctionImport Name="AddVacation" ReturnType="Collection(Contributors.AddVacation_Result)">
+            <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="staffId" Mode="In" Type="Int32" />
+            <Parameter Name="vacationTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SetVacation">
+            <Parameter Name="VacationId" Mode="In" Type="Int32" />
+            <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="staffId" Mode="In" Type="Int32" />
+            <Parameter Name="vacationTypeId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetVacationsOnRange" ReturnType="Collection(Contributors.GetVacationsOnRange_Result)">
+            <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <AssociationSet Name="FK_PostTypes_PostTypesDayTimeCoefficient" Association="Contributors.FK_PostTypes_PostTypesDayTimeCoefficient">
+            <End Role="PostTypesDayTimeCoefficient" EntitySet="PostTypesDayTimeCoefficients" />
+            <End Role="PostType" EntitySet="PostTypes" />
+          </AssociationSet>
+          <FunctionImport Name="GetHolidaysInDate" ReturnType="Collection(Contributors.GetHolidaysInDate_Result)">
+            <Parameter Name="dateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="Users" EntityType="Contributors.User" />
+        </EntityContainer>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staffs" Relationship="Contributors.FK_Post_Staff" FromRole="Post" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="PostType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Staffs" Relationship="Contributors.FK_Post_TypeStaff" FromRole="PostType" ToRole="Staff" />
+          <NavigationProperty Name="VacationTypes" Relationship="Contributors.PostTypesInVacationTypes" FromRole="PostType" ToRole="VacationType" />
+          <Property Name="PostTypesDayTimeCoefficientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PostTypesDayTimeCoefficient" Relationship="Contributors.FK_PostTypes_PostTypesDayTimeCoefficient" FromRole="PostType" ToRole="PostTypesDayTimeCoefficient" />
+        </EntityType>
+        <EntityType Name="RegNorm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Norm" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Contributors.FK_Staffs_RegNorms" FromRole="RegNorm" ToRole="Staff" />
+          <NavigationProperty Name="TimeNormOfMonths" Relationship="Contributors.FK_TimeNormOfMonths_RegNorms" FromRole="RegNorm" ToRole="TimeNormOfMonth" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PatronymicName" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TabelNumber" Type="Int16" Nullable="false" />
+          <Property Name="PostId" Type="Int32" Nullable="false" />
+          <Property Name="PostTypeId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="RegNormId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Post" Relationship="Contributors.FK_Post_Staff" FromRole="Staff" ToRole="Post" />
+          <NavigationProperty Name="PostType" Relationship="Contributors.FK_Post_TypeStaff" FromRole="Staff" ToRole="PostType" />
+          <NavigationProperty Name="RegNorm" Relationship="Contributors.FK_Staffs_RegNorms" FromRole="Staff" ToRole="RegNorm" />
+          <NavigationProperty Name="Vacations" Relationship="Contributors.FK_Staff_Vacation" FromRole="Staff" ToRole="Vacation" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Contributors.FK_Staffs_Genders" FromRole="Staff" ToRole="Gender" />
+          <Property Name="RegNormGraphTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegNormGraphType" Relationship="Contributors.FK_Staffs_RegNormGraphType" FromRole="Staff" ToRole="RegNormGraphType" />
+        </EntityType>
+        <EntityType Name="TimeNormOfMonth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Norm" Type="Double" Nullable="false" />
+          <Property Name="RegNormsId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RegNorm" Relationship="Contributors.FK_TimeNormOfMonths_RegNorms" FromRole="TimeNormOfMonth" ToRole="RegNorm" />
+          <Property Name="Year" Type="Int32" Nullable="false" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VacationTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="Contributors.FK_Staff_Vacation" FromRole="Vacation" ToRole="Staff" />
+          <NavigationProperty Name="VacationType" Relationship="Contributors.FK_Vacations_VacationTypes" FromRole="Vacation" ToRole="VacationType" />
+          <Property Name="EndDateWithHolidays" Type="DateTime" Precision="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VacationType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Label" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Vacations" Relationship="Contributors.FK_Vacations_VacationTypes" FromRole="VacationType" ToRole="Vacation" />
+          <NavigationProperty Name="PostTypes" Relationship="Contributors.PostTypesInVacationTypes" FromRole="VacationType" ToRole="PostType" />
+        </EntityType>
+        <Association Name="FK_Post_Staff">
+          <End Type="Contributors.Post" Role="Post" Multiplicity="1" />
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Post_TypeStaff">
+          <End Type="Contributors.PostType" Role="PostType" Multiplicity="1" />
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="PostTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staffs_RegNorms">
+          <End Type="Contributors.RegNorm" Role="RegNorm" Multiplicity="1" />
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="RegNormId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Vacation">
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="Contributors.Vacation" Role="Vacation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacation">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacations_VacationTypes">
+          <End Type="Contributors.VacationType" Role="VacationType" Multiplicity="1" />
+          <End Type="Contributors.Vacation" Role="Vacation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VacationType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacation">
+              <PropertyRef Name="VacationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Holiday">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="IsShiftOfYear" Type="Boolean" Nullable="false" />
+          <Property Name="IsHoliday" Type="Boolean" Nullable="false" />
+          <Property Name="IsNormsCheck" Type="Boolean" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Staffs" Relationship="Contributors.FK_Staffs_Genders" FromRole="Gender" ToRole="Staff" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PostTypesDayTimeCoefficientValues" Relationship="Contributors.FK_PostTypesDayTimeCoefficientValues_Genders" FromRole="Gender" ToRole="PostTypesDayTimeCoefficientValue" />
+        </EntityType>
+        <Association Name="FK_Staffs_Genders">
+          <End Type="Contributors.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="RegNormGraphType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DayCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="Contributors.FK_Staffs_RegNormGraphType" FromRole="RegNormGraphType" ToRole="Staff" />
+        </EntityType>
+        <Association Name="FK_Staffs_RegNormGraphType">
+          <End Type="Contributors.RegNormGraphType" Role="RegNormGraphType" Multiplicity="1" />
+          <End Type="Contributors.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNormGraphType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="RegNormGraphTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TimeNormOfMonths_RegNorms">
+          <End Type="Contributors.RegNorm" Role="RegNorm" Multiplicity="1" />
+          <End Type="Contributors.TimeNormOfMonth" Role="TimeNormOfMonth" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegNorm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TimeNormOfMonth">
+              <PropertyRef Name="RegNormsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SysParameter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="PostTypesInVacationTypes">
+          <End Type="Contributors.PostType" Role="PostType" Multiplicity="*" />
+          <End Type="Contributors.VacationType" Role="VacationType" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PostTypesDayTimeCoefficientValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostTypesDayTimeCoefficientId" Type="Int32" Nullable="false" />
+          <Property Name="GendersId" Type="Int32" Nullable="false" />
+          <Property Name="Coefficient" Type="Double" Nullable="false" />
+          <Property Name="TimeNormOfDay" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Gender" Relationship="Contributors.FK_PostTypesDayTimeCoefficientValues_Genders" FromRole="PostTypesDayTimeCoefficientValue" ToRole="Gender" />
+          <NavigationProperty Name="PostTypesDayTimeCoefficient" Relationship="Contributors.FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient" FromRole="PostTypesDayTimeCoefficientValue" ToRole="PostTypesDayTimeCoefficient" />
+        </EntityType>
+        <Association Name="FK_PostTypesDayTimeCoefficientValues_Genders">
+          <End Type="Contributors.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="Contributors.PostTypesDayTimeCoefficientValue" Role="PostTypesDayTimeCoefficientValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesDayTimeCoefficientValue">
+              <PropertyRef Name="GendersId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PostTypesDayTimeCoefficient">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="260" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PostTypesDayTimeCoefficientValues" Relationship="Contributors.FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient" FromRole="PostTypesDayTimeCoefficient" ToRole="PostTypesDayTimeCoefficientValue" />
+          <NavigationProperty Name="PostTypes" Relationship="Contributors.FK_PostTypes_PostTypesDayTimeCoefficient" FromRole="PostTypesDayTimeCoefficient" ToRole="PostType" />
+        </EntityType>
+        <Association Name="FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient">
+          <End Type="Contributors.PostTypesDayTimeCoefficient" Role="PostTypesDayTimeCoefficient" Multiplicity="1" />
+          <End Type="Contributors.PostTypesDayTimeCoefficientValue" Role="PostTypesDayTimeCoefficientValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypesDayTimeCoefficient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostTypesDayTimeCoefficientValue">
+              <PropertyRef Name="PostTypesDayTimeCoefficientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="AddVacation_Result">
+          <Property Type="Decimal" Name="VacationId" Nullable="true" Precision="38" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="GetVacationsOnRange_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="StaffId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDateWithHolidays" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="VacationTypeId" Nullable="false" />
+        </ComplexType>
+        <Association Name="FK_PostTypes_PostTypesDayTimeCoefficient">
+          <End Type="Contributors.PostTypesDayTimeCoefficient" Role="PostTypesDayTimeCoefficient" Multiplicity="1" />
+          <End Type="Contributors.PostType" Role="PostType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PostTypesDayTimeCoefficient">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostType">
+              <PropertyRef Name="PostTypesDayTimeCoefficientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="GetT13ReportData_Result">
+          <Property Type="String" Name="ObjectName" Nullable="true" MaxLength="1024" />
+          <Property Type="String" Name="SubdivisionName" Nullable="true" MaxLength="1024" />
+          <Property Type="Int32" Name="DocNumber" Nullable="true" />
+          <Property Type="Int32" Name="CreationDate" Nullable="true" />
+          <Property Type="DateTime" Name="PeriodFrom" Nullable="true" />
+          <Property Type="DateTime" Name="PeriodTo" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetHolidaysInDate_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="Boolean" Name="IsShiftOfYear" Nullable="false" />
+          <Property Type="Boolean" Name="IsHoliday" Nullable="false" />
+          <Property Type="Boolean" Name="IsNormsCheck" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="GetStaffsSummary_Result">
+          <Property Type="String" Name="StaffInfo" Nullable="true" MaxLength="390" />
+          <Property Type="String" Name="StaffName" Nullable="true" MaxLength="134" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Surname" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="PatronymicName" Nullable="false" MaxLength="128" />
+          <Property Type="Int16" Name="TabelNumber" Nullable="false" />
+          <Property Type="Int32" Name="PostId" Nullable="false" />
+          <Property Type="Int32" Name="PostTypeId" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="GenderId" Nullable="false" />
+          <Property Type="Int32" Name="RegNormGraphTypeId" Nullable="false" />
+          <Property Type="Int32" Name="RegNormId" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ContributorsStoreContainer" CdmEntityContainer="ContributorsEntities">
+          <EntitySetMapping Name="Posts">
+            <EntityTypeMapping TypeName="Contributors.Post">
+              <MappingFragment StoreEntitySet="Posts">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostTypes">
+            <EntityTypeMapping TypeName="Contributors.PostType">
+              <MappingFragment StoreEntitySet="PostTypes">
+                <ScalarProperty Name="PostTypesDayTimeCoefficientId" ColumnName="PostTypesDayTimeCoefficientId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegNorms">
+            <EntityTypeMapping TypeName="Contributors.RegNorm">
+              <MappingFragment StoreEntitySet="RegNorms">
+                <ScalarProperty Name="Norm" ColumnName="Norm" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="Contributors.Staff">
+              <MappingFragment StoreEntitySet="Staffs">
+                <ScalarProperty Name="RegNormGraphTypeId" ColumnName="RegNormGraphTypeId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="RegNormId" ColumnName="RegNormId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="PostTypeId" ColumnName="PostTypeId" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="TabelNumber" ColumnName="TabelNumber" />
+                <ScalarProperty Name="PatronymicName" ColumnName="PatronymicName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TimeNormOfMonths">
+            <EntityTypeMapping TypeName="Contributors.TimeNormOfMonth">
+              <MappingFragment StoreEntitySet="TimeNormOfMonths">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="RegNormsId" ColumnName="RegNormsId" />
+                <ScalarProperty Name="Norm" ColumnName="Norm" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="Contributors.Vacation">
+              <MappingFragment StoreEntitySet="Vacations">
+                <ScalarProperty Name="EndDateWithHolidays" ColumnName="EndDateWithHolidays" />
+                <ScalarProperty Name="VacationTypeId" ColumnName="VacationTypeId" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VacationTypes">
+            <EntityTypeMapping TypeName="Contributors.VacationType">
+              <MappingFragment StoreEntitySet="VacationTypes">
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Holidays">
+            <EntityTypeMapping TypeName="Contributors.Holiday">
+              <MappingFragment StoreEntitySet="Holidays">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IsNormsCheck" ColumnName="IsNormsCheck" />
+                <ScalarProperty Name="IsHoliday" ColumnName="IsHoliday" />
+                <ScalarProperty Name="IsShiftOfYear" ColumnName="IsShiftOfYear" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Contributors.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegNormGraphTypes">
+            <EntityTypeMapping TypeName="Contributors.RegNormGraphType">
+              <MappingFragment StoreEntitySet="RegNormGraphType">
+                <ScalarProperty Name="DayCount" ColumnName="DayCount" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ShiftHolidayOnNextYear" FunctionName="Contributors.Store.ShiftHolidayOnNextYear" />
+          <FunctionImportMapping FunctionImportName="ShiftTimeNormOfMonthsOnNextYear" FunctionName="Contributors.Store.ShiftTimeNormOfMonthsOnNextYear" />
+          <EntitySetMapping Name="SysParameters">
+            <EntityTypeMapping TypeName="Contributors.SysParameter">
+              <MappingFragment StoreEntitySet="SysParameters">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetStaffsSummary" FunctionName="Contributors.Store.GetStaffsSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Contributors.GetStaffsSummary_Result">
+                <ScalarProperty Name="StaffInfo" ColumnName="StaffInfo" />
+                <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PatronymicName" ColumnName="PatronymicName" />
+                <ScalarProperty Name="TabelNumber" ColumnName="TabelNumber" />
+                <ScalarProperty Name="PostId" ColumnName="PostId" />
+                <ScalarProperty Name="PostTypeId" ColumnName="PostTypeId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="RegNormGraphTypeId" ColumnName="RegNormGraphTypeId" />
+                <ScalarProperty Name="RegNormId" ColumnName="RegNormId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetT13ReportData" FunctionName="Contributors.Store.GetT13ReportData">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Contributors.GetT13ReportData_Result">
+                <ScalarProperty Name="ObjectName" ColumnName="ObjectName" />
+                <ScalarProperty Name="SubdivisionName" ColumnName="SubdivisionName" />
+                <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="PeriodFrom" />
+                <ScalarProperty Name="PeriodTo" ColumnName="PeriodTo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <AssociationSetMapping Name="PostTypesInVacationTypes" TypeName="Contributors.PostTypesInVacationTypes" StoreEntitySet="PostTypesInVacationTypes">
+            <EndProperty Name="VacationType">
+              <ScalarProperty Name="Id" ColumnName="VacationTypesId" />
+            </EndProperty>
+            <EndProperty Name="PostType">
+              <ScalarProperty Name="Id" ColumnName="PostTypesId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PostTypesDayTimeCoefficientValues">
+            <EntityTypeMapping TypeName="Contributors.PostTypesDayTimeCoefficientValue">
+              <MappingFragment StoreEntitySet="PostTypesDayTimeCoefficientValues">
+                <ScalarProperty Name="TimeNormOfDay" ColumnName="TimeNormOfDay" />
+                <ScalarProperty Name="Coefficient" ColumnName="Coefficient" />
+                <ScalarProperty Name="GendersId" ColumnName="GendersId" />
+                <ScalarProperty Name="PostTypesDayTimeCoefficientId" ColumnName="PostTypesDayTimeCoefficientId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PostTypesDayTimeCoefficients">
+            <EntityTypeMapping TypeName="Contributors.PostTypesDayTimeCoefficient">
+              <MappingFragment StoreEntitySet="PostTypesDayTimeCoefficient">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddVacation" FunctionName="Contributors.Store.AddVacation" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Contributors.AddVacation_Result">
+                <ScalarProperty Name="VacationId" ColumnName="VacationId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SetVacation" FunctionName="Contributors.Store.SetVacation" />
+          <FunctionImportMapping FunctionImportName="GetVacationsOnRange" FunctionName="Contributors.Store.GetVacationsOnRange">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Contributors.GetVacationsOnRange_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="EndDateWithHolidays" ColumnName="EndDateWithHolidays" />
+                <ScalarProperty Name="VacationTypeId" ColumnName="VacationTypeId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetHolidaysInDate" FunctionName="Contributors.Store.GetHolidaysInDate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Contributors.GetHolidaysInDate_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="IsShiftOfYear" ColumnName="IsShiftOfYear" />
+                <ScalarProperty Name="IsHoliday" ColumnName="IsHoliday" />
+                <ScalarProperty Name="IsNormsCheck" ColumnName="IsNormsCheck" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Contributors.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

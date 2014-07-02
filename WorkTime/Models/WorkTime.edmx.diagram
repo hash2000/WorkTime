@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bca96c2f0f114f98922feeb8ae56b061" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="Contributors.Post" Width="1.5" PointX="11.75" PointY="13.5" />
+        <EntityTypeShape EntityType="Contributors.PostType" Width="1.5" PointX="11.75" PointY="9.625" />
+        <EntityTypeShape EntityType="Contributors.RegNorm" Width="1.5" PointX="5.75" PointY="3.25" />
+        <EntityTypeShape EntityType="Contributors.Staff" Width="1.75" PointX="0.875" PointY="0.875" />
+        <EntityTypeShape EntityType="Contributors.TimeNormOfMonth" Width="2.75" PointX="8.375" PointY="3.125" />
+        <EntityTypeShape EntityType="Contributors.Vacation" Width="1.625" PointX="5.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Contributors.VacationType" Width="1.5" PointX="8.375" PointY="1" />
+        <AssociationConnector Association="Contributors.FK_Post_Staff" />
+        <AssociationConnector Association="Contributors.FK_Post_TypeStaff" />
+        <AssociationConnector Association="Contributors.FK_Staffs_RegNorms" />
+        <AssociationConnector Association="Contributors.FK_Staff_Vacation" />
+        <AssociationConnector Association="Contributors.FK_Vacations_VacationTypes" />
+        <EntityTypeShape EntityType="Contributors.Holiday" Width="1.5" PointX="7" PointY="16" />
+        <EntityTypeShape EntityType="Contributors.Gender" Width="1.5" PointX="5.75" PointY="5.25" />
+        <AssociationConnector Association="Contributors.FK_Staffs_Genders" />
+        <EntityTypeShape EntityType="Contributors.RegNormGraphType" Width="2.5" PointX="11.75" PointY="11.75" />
+        <AssociationConnector Association="Contributors.FK_Staffs_RegNormGraphType" />
+        <AssociationConnector Association="Contributors.FK_TimeNormOfMonths_RegNorms" />
+        <EntityTypeShape EntityType="Contributors.SysParameter" Width="1.5" PointX="9.25" PointY="16" />
+        <AssociationConnector Association="Contributors.PostTypesInVacationTypes" />
+        <EntityTypeShape EntityType="Contributors.PostTypesDayTimeCoefficientValue" Width="2.75" PointX="8.375" PointY="5.25" />
+        <AssociationConnector Association="Contributors.FK_PostTypesDayTimeCoefficientValues_Genders" />
+        <EntityTypeShape EntityType="Contributors.PostTypesDayTimeCoefficient" Width="2.375" PointX="8.375" PointY="7.625" />
+        <AssociationConnector Association="Contributors.FK_PostTypesDayTimeCoefficientValues_PostTypesDayTimeCoefficient" />
+        <AssociationConnector Association="Contributors.FK_PostTypes_PostTypesDayTimeCoefficient" />
+        <EntityTypeShape EntityType="Contributors.User" Width="1.5" PointX="14.75" PointY="6.625" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

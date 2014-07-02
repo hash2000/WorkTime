@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учет рабочего времени. Настройки</title>
+    @Styles.Render("~/Content/css")
+    @*
+    @Scripts.Render("~/bundles/modernizr")*@
+
+    @Styles.Render("~/extjs/css")
+    @Scripts.Render("~/extjs/scripts")
+
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        Application = {
+            Info: {
+                name: 'WorkTime',
+                title: 'Учет рабочего времени - Настройка'
+            },
+
+            Path: {
+                Get: function (path) {
+                    //если вставлен url
+                    var regex = /(((^https?)|(^ftp)|(^file)):\/?)/i;
+                    if (regex.test(path)) {
+                        return path;
+                    }
+
+                    //если вставлен url
+                    return Ext.String.format('{0}//{1}/{2}/{3}',
+                        location.protocol,
+                        location.host,
+                        Application.Info.name,
+                        path);
+                }
+            }
+        };
+
+        Ext.Loader.setPath('Common', Application.Path.Get('Scripts/Ext/Common'));
+        Ext.Loader.setConfig({
+            enabled: true,
+            disableCaching: false
+        });
+
+
+    </script>
+
+    
+    @RenderBody()
+    @*@RenderSection("scripts", required: false)*@
+</body>
+</html>
